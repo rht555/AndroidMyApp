@@ -3,6 +3,7 @@ package com.rht.myapp.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.os.PersistableBundle;
 import android.widget.Toast;
 
@@ -18,6 +19,11 @@ public class BaseActivity extends AppCompatActivity {
     }
     public void showToast(String msg){
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();//提示
+    }
+    public void showToastSync(String msg){//异步的消息处理
+        Looper.prepare();
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();//提示
+        Looper.loop();
     }
     public void navigateTo(Class cls){
         Intent in = new Intent(context,cls);//跳转
